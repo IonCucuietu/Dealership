@@ -3,9 +3,9 @@ using DealershipManager.Models;
 
 namespace DealershipManager.Services
 {
-     public interface IClientService
+     public interface ISaleService
      {
-          void Add(AddClientDto clientDto);
-          List<Client> GetAll();
+          void Add(AddSaleDto saleDto);
+          List<Sale> GetAll();
      }
 }
