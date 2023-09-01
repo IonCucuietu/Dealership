@@ -24,9 +24,21 @@ namespace DealershipManager.Repositories
 
                if (carToDelete != null)
                {
-                    _dbContext.Cars.Remove(carToDelete);
+                   var result = _dbContext.Cars.Remove(carToDelete);
                     _dbContext.SaveChanges();
                }
+          }
+
+          public List<Car> GetByFilter(string model, string brand, int productionYear)
+          {
+               var cars = _dbContext.Cars
+                    .Where(c => c.Brand == brand)
+                    .Where(c => c.Model == model)
+                    .Where(c => c.ProductionYear == productionYear)
+                    .OrderBy(c => c.Price)
+                    .ToList();
+
+               return cars;
           }
 
           public Car? Get(Guid id)

@@ -46,7 +46,8 @@ namespace DealershipManager.Repositories
                {
                     clientToUpdate.Name = client.Name;
                     clientToUpdate.IsCompany = client.IsCompany;
-
+;
+                    _dbContext.Update(clientToUpdate);
                     _dbContext.SaveChanges();
                }
           }
