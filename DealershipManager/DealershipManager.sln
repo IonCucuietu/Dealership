@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealershipManager", "DealershipManager\DealershipManager.csproj", "{33AF445B-0D00-4570-8B74-426390F3AD27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DealershipManager", "DealershipManager\DealershipManager.csproj", "{33AF445B-0D00-4570-8B74-426390F3AD27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealershipManager.Tests", "DealershipManager.Tests\DealershipManager.Tests.csproj", "{8C181B49-3366-4EE8-BE59-11F8591FB6F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{33AF445B-0D00-4570-8B74-426390F3AD27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33AF445B-0D00-4570-8B74-426390F3AD27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33AF445B-0D00-4570-8B74-426390F3AD27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C181B49-3366-4EE8-BE59-11F8591FB6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C181B49-3366-4EE8-BE59-11F8591FB6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C181B49-3366-4EE8-BE59-11F8591FB6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C181B49-3366-4EE8-BE59-11F8591FB6F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
