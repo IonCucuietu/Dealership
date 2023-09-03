@@ -7,7 +7,7 @@ namespace DealershipManager.Services
      {
           void Add(AddCarDto carDto);
           Car? Get(Guid id);
-          List<Car> GetAll();
+          List<Car> GetAll(bool isSold);
           void Update(Guid carId, UpdateCarDto carDto);
           void Delete(Guid id);
      }

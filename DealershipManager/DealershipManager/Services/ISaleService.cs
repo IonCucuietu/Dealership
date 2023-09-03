@@ -6,6 +6,6 @@ namespace DealershipManager.Services
      public interface ISaleService
      {
           void Add(AddSaleDto saleDto);
-          List<Sale> GetAll();
+          List<Sale> GetAll(DateTime startDate, DateTime endDate);
      }
 }

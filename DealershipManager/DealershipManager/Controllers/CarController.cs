@@ -32,9 +32,9 @@ namespace DealershipManager.Controllers
           [HttpGet]
           [Route("cars")]
 
-          public IActionResult GetAll() 
+          public IActionResult GetAll(bool isSold) 
           {
-               var result = _carService.GetAll();
+               var result = _carService.GetAll(isSold);
 
                return Ok(result);
           }
