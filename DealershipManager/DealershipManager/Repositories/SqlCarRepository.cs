@@ -46,9 +46,11 @@ namespace DealershipManager.Repositories
                return _dbContext.Cars.FirstOrDefault(c => c.Id == id);
           }
 
-          public List<Car> GetAll()
+          public List<Car> GetAll(bool isSold)
           {
-               return _dbContext.Cars.ToList();
+               return _dbContext.Cars
+                    .Where(c => c.IsSold == isSold)
+                    .ToList();   
           }
 
           public void Update(Car car)

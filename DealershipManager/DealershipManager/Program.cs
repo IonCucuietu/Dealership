@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ExceptionHandlingMiddleware>();
 
+builder.Services.AddScoped<ITimeProvider, TimeProvider>();
+
 builder.Services.AddScoped<ICarService, CarService>();
 //builder.Services.AddScoped<ICarRepository, InMemoryCarRepository>();
 builder.Services.AddScoped<ICarRepository, SqlCarRepository>();
