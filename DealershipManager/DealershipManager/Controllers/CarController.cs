@@ -22,9 +22,10 @@ namespace DealershipManager.Controllers
 
           public IActionResult Add(AddCarDto car)
           {
-               _carService.Add(car);
+               var result = _carService.Add(car);
 
-               return Ok();
+               return result.IsSucces ? Ok() : BadRequest(result.ErrorMessage);
+
           }
 
           //Get all cars: GET /cars
@@ -45,16 +46,11 @@ namespace DealershipManager.Controllers
 
           public IActionResult GetById(Guid carId) 
           {
-               var result = _carService.Get(carId);
+               var operationResult = _carService.Get(carId);
 
-               if (result == null)
-               {
-                    return NotFound();
-               }
-               else
-               {
-                    return Ok(result);
-               }
+              return operationResult.IsSucces
+                    ? Ok(operationResult.Result)
+                    : NotFound(operationResult.ErrorMessage);
           }
 
 

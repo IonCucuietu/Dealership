@@ -1,6 +1,8 @@
 ﻿using DealershipManager.Dtos;
+using DealershipManager.Exceptions;
 using DealershipManager.Models;
 using DealershipManager.Repositories;
+using System.Collections.Generic;
 
 namespace DealershipManager.Services
 {
@@ -23,15 +25,15 @@ namespace DealershipManager.Services
                _clientRepository = clientRepository;
           }
 
-          public void Add(AddSaleDto saleDto)
+          public Result Add(AddSaleDto saleDto)
           {
                var car = _carRepository.Get(saleDto.CarId);
                var isValidCar = IsValidCar(car);
 
                var client = _clientRepository.Get(saleDto.ClientId);
                var isValidClient = IsValidClient(client);
-               
-               if (isValidCar && isValidClient && saleDto.FinalPrice >= 0) 
+
+               if (isValidCar && isValidClient && saleDto.FinalPrice >= 0)
                {
                     var sale = new Sale
                     {
@@ -49,13 +51,16 @@ namespace DealershipManager.Services
                }
                else
                {
-                    throw new ArgumentException("Invalid sale data. Could not register the sale.");
+                    return Result.Fail("Invalid sale data. Could not register the sale.");
                }
+               return Result.Success();
           }
 
-          public List<Sale> GetAll(DateTime startDate, DateTime endDate)
+          public GenericResult<List<Sale>> GetAll(DateTime startDate, DateTime endDate)
           {
-               return _saleRepository.GetAll(startDate, endDate);
+               var sales = _saleRepository.GetAll(startDate, endDate);
+
+               return GenericResult < List < Sale >>.Success(sales);
           }
 
           private bool IsValidCar(Car? car)

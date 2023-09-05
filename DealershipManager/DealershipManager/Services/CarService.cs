@@ -1,6 +1,8 @@
 ﻿using DealershipManager.Dtos;
+using DealershipManager.Exceptions;
 using DealershipManager.Models;
 using DealershipManager.Repositories;
+using System.Collections.Generic;
 
 namespace DealershipManager.Services
 {
@@ -15,13 +17,13 @@ namespace DealershipManager.Services
                _carValidator = carValidator;
                _carRepository = carRepository;
         }
-        public void Add(AddCarDto carDto)
+        public Result Add(AddCarDto carDto)
           {
                var isValid = _carValidator.IsValidAddCarDto(carDto);
 
                if (!isValid)
                {
-                    throw new ArgumentException("Invalid car info. Could not add the car");
+                    return Result.Fail("Invalid car info. Could not add the car.");
                }
 
                var car = new Car
@@ -36,31 +38,41 @@ namespace DealershipManager.Services
                };
 
                _carRepository.Add(car);
+
+               return Result.Success();
           }
 
 
-          public void Delete(Guid id)
+          public Result Delete(Guid id)
           {
                _carRepository.Delete(id);
+
+               return Result.Success(); 
           }
 
-          public Car? Get(Guid id)
+          public GenericResult<Car> Get(Guid id)
           {
-               return _carRepository.Get(id);     
+               var car = _carRepository.Get(id);
+               if (car == null) 
+               {
+                    return GenericResult<Car>.Fail($"Could not find the car with id: {id}");
+               }
+
+               return GenericResult<Car>.Success(car);     
           }
 
-          public List<Car> GetAll(bool isSold)
+          public GenericResult<List<Car>> GetAll(bool isSold)
           {
-               return _carRepository.GetAll(isSold);
+               return GenericResult<List<Car>>.Success(_carRepository.GetAll(isSold));
           }
 
-          public void Update(Guid carId, UpdateCarDto carDto)
+          public Result Update(Guid carId, UpdateCarDto carDto)
           {
                var isValid = _carValidator.IsValidUpdateCarDto(carDto);
 
                if (!isValid)
                {
-                    throw new ArgumentException("Invalid car info. Could not update the car");
+                    return Result.Fail("Invalid car info. Could not add the car");
                }
 
                var car = new Car
@@ -73,7 +85,11 @@ namespace DealershipManager.Services
                     ProductionYear = carDto.ProductionYear,
                };
 
+               throw new Exception("Could not establish connection with SQL Database");
+
                _carRepository.Update(car);
+
+               return Result.Success(); 
           }
      }
 }

@@ -5,7 +5,7 @@ namespace DealershipManager.Services
 {
      public interface IClientService
      {
-          void Add(AddClientDto clientDto);
-          List<Client> GetAll();
+          Result Add(AddClientDto clientDto);
+          GenericResult<List<Client>> GetAll();
      }
 }

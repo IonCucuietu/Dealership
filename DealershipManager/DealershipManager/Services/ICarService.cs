@@ -5,10 +5,10 @@ namespace DealershipManager.Services
 {
      public interface ICarService
      {
-          void Add(AddCarDto carDto);
-          Car? Get(Guid id);
-          List<Car> GetAll(bool isSold);
-          void Update(Guid carId, UpdateCarDto carDto);
-          void Delete(Guid id);
+          Result Add(AddCarDto carDto);
+          GenericResult<Car> Get(Guid id);
+          GenericResult<List<Car>> GetAll(bool isSold);
+          Result Update(Guid carId, UpdateCarDto carDto);
+          Result Delete(Guid id);
      }
 }
