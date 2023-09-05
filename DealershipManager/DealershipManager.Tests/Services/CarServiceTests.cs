@@ -36,7 +36,6 @@ namespace DealershipManager.Tests.Services
                //Assert
                Assert.Throws<ArgumentException>(act);
                carValidatorMock.Verify(m => m.IsValidAddCarDto(It.IsAny<AddCarDto>()), Times.Once());
-
                carRepositoryMock.Verify(m => m.Add(It.IsAny<Car>()), Times.Never);
           }
 
